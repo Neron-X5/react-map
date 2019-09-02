@@ -1,31 +1,66 @@
 {
-  "name": "react-map",
-  "version": "0.1.0",
-  "private": true,
-  "dependencies": {
-    "react": "^16.9.0",
-    "react-dom": "^16.9.0",
-    "react-scripts": "3.1.1"
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
-  },
-  "eslintConfig": {
-    "extends": "react-app"
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
-  }
+    "name": "react-map",
+    "version": "1.0.0",
+    "description": "Demo app for Geolocation CRUD operations",
+    "author": "Neron-X5",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/Neron-X5/react-map.git"
+    },
+    "scripts": {
+        "start": "react-scripts start",
+        "build": "react-scripts build",
+        "test": "react-scripts test",
+        "eject": "react-scripts eject"
+    },
+    "dependencies": {
+        "normalize.css": "^8.0.1",
+        "prop-types": "^15.7.2",
+        "react": "^16.9.0",
+        "react-dom": "^16.9.0",
+        "react-scripts": "3.1.1"
+    },
+    "devDependencies": {
+        "enzyme": "^3.10.0",
+        "enzyme-adapter-react-16": "^1.14.0",
+        "husky": "^3.0.5",
+        "jest-enzyme": "^7.1.0",
+        "lint-staged": "^9.2.5",
+        "node-sass": "^4.12.0",
+        "prettier": "^1.18.2",
+        "react-test-renderer": "^16.9.0",
+        "stylelint": "^10.1.0"
+    },
+    "eslintConfig": {
+        "extends": "react-app"
+    },
+    "husky": {
+        "hooks": {
+            "pre-commit": "lint-staged"
+        }
+    },
+    "lint-staged": {
+        "*.js": [
+            "prettier --write --print-width 120 --tab-width 4 --single-quote",
+            "eslint --fix --max-warnings 3",
+            "git add"
+        ],
+        "*.scss": [
+            "prettier --write --print-width 120 --tab-width 4 --single-quote",
+            "stylelint --syntax scss --fix",
+            "git add"
+        ]
+    },
+    "browserslist": {
+        "production": [
+            ">0.2%",
+            "not dead",
+            "not op_mini all"
+        ],
+        "development": [
+            "last 1 chrome version",
+            "last 1 firefox version",
+            "last 1 safari version"
+        ]
+    }
 }

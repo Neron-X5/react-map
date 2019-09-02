@@ -1,0 +1,35 @@
+@import '../../configs/style/variable.scss';
+
+.app-container {
+    display: flex;
+    flex-direction: column;
+
+    .header {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 50px;
+        color: $colorFontSecondary;
+        border-bottom: 1px solid $colorFontPrimary;
+        background-image: radial-gradient(
+            circle farthest-corner at 10% 20%,
+            $secondaryThemeColor 0%,
+            $primaryThemeColor 90%
+        );
+
+        h1 {
+            font-size: 2rem;
+        }
+    }
+
+    .main {
+        display: flex;
+        flex-direction: column;
+        height: calc(100vh - 50px);
+        font-size: 1.5rem;
+
+        @media all and (min-width: 1024px) {
+            flex-direction: row;
+        }
+    }
+}

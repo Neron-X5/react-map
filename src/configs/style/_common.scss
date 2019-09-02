@@ -1,0 +1,96 @@
+@import './variable.scss';
+
+* {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    box-sizing: border-box;
+}
+
+:focus {
+    outline: none;
+}
+
+body {
+    height: 100vh;
+    width: 100vw;
+    font-family: $pageFont;
+    font-weight: 400;
+    font-style: normal;
+    background: $backgroundColor;
+    color: $colorFontPrimary;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: $titleFont;
+    font-weight: 700;
+    margin: 0.5em 0;
+}
+
+button {
+    display: inline-block;
+    border: none;
+    padding: 1rem 2rem;
+    margin: 0;
+    text-decoration: none;
+    background-color: $primaryThemeColor;
+    color: $colorFontSecondary;
+    font-family: $titleFont;
+    font-weight: 700;
+    font-size: 1.2rem;
+    cursor: pointer;
+    text-align: center;
+    border-radius: 2px;
+    transition: background 250ms ease-in-out, transform 150ms ease;
+
+    &:hover,
+    &:focus {
+        background: lighten($primaryThemeColor, 25%);
+    }
+
+    &:focus {
+        outline: 1px solid $colorFontSecondary;
+        outline-offset: -4px;
+    }
+
+    &:active {
+        transform: scale(0.99);
+    }
+}
+
+a,
+i {
+    color: $primaryThemeColor;
+
+    &:link,
+    &:visited,
+    &:active {
+        color: $primaryThemeColor;
+    }
+
+    &:hover,
+    &.active {
+        color: $secondaryThemeColor;
+    }
+}
+
+code {
+    font-family: $numberFont;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus {
+    -webkit-box-shadow: 0 0 0 1000px rgba(255, 255, 255, 0) inset !important;
+    -webkit-transition: background-color 5000s ease-in-out 0s;
+}
+
+input::-ms-clear,
+input::-ms-reveal {
+    display: none;
+}
