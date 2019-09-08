@@ -59,6 +59,12 @@
                     width: 100%;
                 }
             }
+
+            .form-error {
+                color: firebrick;
+                padding: 5px;
+                font-size: 0.8rem;
+            }
         }
     }
 }

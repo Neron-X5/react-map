@@ -1,74 +1,91 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
+
+import { getGeoCode } from '../../actions/app-action';
 
 import './style.scss';
 
-class AddressFormComponent extends Component {
-    constructor(props) {
-        super(props);
-        this.state = { latitude: '', longitude: '' };
-    }
+const AddressFormComponent = ({ toggleAddressForm }) => {
+    const currentAddress = useSelector(state => state.app.currentAddress);
+    const loading = useSelector(state => state.app.loading);
+    const error = useSelector(state => state.app.loading);
+    const [name, setName] = useState('');
+    const [address, setAddress] = useState('');
 
-    handleInputChange = (name, event) => {
-        this.setState({ [name]: event.target.value });
+    useEffect(() => {
+        if (currentAddress.name && currentAddress.address) {
+            setName(currentAddress.name);
+            setAddress(currentAddress.address);
+        }
+    }, [currentAddress]);
+
+    const _handleName = e => {
+        setName(e.target.value);
     };
 
-    handleSubmit = event => {
+    const _handleAddress = e => {
+        setAddress(e.target.value);
+    };
+
+    const _handleSubmit = event => {
         event.preventDefault();
-        this.props.handleFormSubmit(this.state.latitude, this.state.longitude);
+        getGeoCode(name, address);
     };
 
-    render() {
-        return (
-            <div className='address-form-container'>
-                <div className='overlay'></div>
-                <div className='form-container'>
-                    <h2 className='form-title'>Add Address Details</h2>
-                    <form className='form' onSubmit={this.handleSubmit}>
-                        <div className='form-group'>
-                            <label htmlFor='latitude' className='form-label'>
-                                Latitude
-                            </label>
-                            <input
-                                id='latitude'
-                                className='form-input'
-                                type='number'
-                                step={0.0000001}
-                                autoComplete='off'
-                                maxLength={10}
-                                required={true}
-                                value={this.state.latitude}
-                                onChange={this.handleInputChange.bind(this, 'latitude')}
-                            />
-                        </div>
-                        <div className='form-group'>
-                            <label htmlFor='longitude' className='form-label'>
-                                Longitude
-                            </label>
-                            <input
-                                id='longitude'
-                                className='form-input'
-                                type='number'
-                                step={0.0000001}
-                                autoComplete='off'
-                                maxLength={10}
-                                required={true}
-                                value={this.state.longitude}
-                                onChange={this.handleInputChange.bind(this, 'longitude')}
-                            />
-                        </div>
-                        <div className='form-button'>
-                            <button type='submit'>Submit</button>
-                        </div>
-                    </form>
-                </div>
+    return (
+        <div className='address-form-container'>
+            <div className='overlay' onClick={toggleAddressForm}></div>
+            <div className='form-container'>
+                <h2 className='form-title'>Add Address Details</h2>
+                <form className='form' onSubmit={_handleSubmit}>
+                    <div className='form-group'>
+                        <label htmlFor='name' className='form-label'>
+                            Name
+                        </label>
+                        <input
+                            id='name'
+                            className='form-input'
+                            type='text'
+                            autoComplete='on'
+                            maxLength={50}
+                            required={true}
+                            value={name}
+                            onChange={_handleName}
+                        />
+                    </div>
+                    <div className='form-group'>
+                        <label htmlFor='address' className='form-label'>
+                            Address
+                        </label>
+                        <input
+                            id='address'
+                            className='form-input'
+                            type='text'
+                            autoComplete='on'
+                            maxLength={250}
+                            required={true}
+                            value={address}
+                            onChange={_handleAddress}
+                        />
+                    </div>
+                    <div className='form-button'>
+                        <button type='submit' disabled={loading}>
+                            Submit
+                        </button>
+                        <button className='outline' onClick={toggleAddressForm} disabled={loading}>
+                            Cancel
+                        </button>
+                    </div>
+                    {error && <div className='form-error'>{error}</div>}
+                </form>
             </div>
-        );
-    }
-}
+        </div>
+    );
+};
 
 AddressFormComponent.propTypes = {
-    handleFormSubmit: PropTypes.func.isRequired
+    toggleAddressForm: PropTypes.func.isRequired
 };
 
 export default AddressFormComponent;

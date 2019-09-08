@@ -1,20 +1,25 @@
 export const APP_CONSTANTS = {
-    PAGE_LIMIT: 20,
-    STORAGE_KEY: 'SHIPMENT_APP',
+    PROVIDER: 'BING', // set from: ['GOOGLE', 'BING']
     ERROR_MESSAGE: 'Could not fetch the data. Please try again in a moment.',
+    BING_API_KEY: 'Ah0dP42fWseRql_Fw2VhiGd7yxlWClb2mwW2-ctdcbTM1gqBcKoPAAxuIxEqUzpM',
+    GOOGLE_API_KEY: 'AIzaSyC-vUQ5wO-JW7QZ8gJC-C2VCt5KZEfRvWQ',
     ACTION_TYPE: {
-        LIST_LOADING: 'LIST_LOADING',
-        DETAILS_LOADING: 'DETAILS_LOADING',
-        LOAD_SHIPMENTS: 'LOAD_SHIPMENTS',
-        LOAD_SHIPMENT_DETAILS: 'LOAD_SHIPMENT_DETAILS',
-        RENAME_SHIPMENT: 'RENAME_SHIPMENT',
-        CLOSE_LIST_TOAST: 'CLOSE_LIST_TOAST',
-        CLOSE_DETAILS_TOAST: 'CLOSE_DETAILS_TOAST'
+        LOADING: 'LOADING',
+        TOGGLE_ADDRESS_FORM: 'TOGGLE_ADDRESS_FORM',
+        DELETE_ADDRESS: 'DELETE_ADDRESS',
+        EDIT_ADDRESS: 'EDIT_ADDRESS',
+        GET_GEO_CODE: 'GET_GEO_CODE',
+        GET_MAP_IMAGE: 'GET_MAP_IMAGE'
     },
     API: {
-        BASE_URL: 'http://localhost:3300',
-        LOAD_SHIPMENTS: 'shipments?q={query}&_page={page}&_limit={limit}&_sort={sort_by}&_order={order_by}',
-        LOAD_SHIPMENT_DETAILS: 'shipments?q={shipment_id}',
-        SEARCH_SHIPMENTS: 'shipments?q={query}'
+        BING_BASE_URL: 'http://dev.virtualearth.net/REST/v1',
+        GOOGLE_BASE_URL: 'https://maps.googleapis.com/maps/api',
+        BING_GET_LOCATION: '/Locations?q={address}&key={api_key}&o=json',
+        GOOGLE_GET_LOCATION: '/geocode/json?address={address}&key={api_key}',
+        BING_GET_MAP_IMAGE:
+            '/Imagery/Map/Road/51.136874777102875,9.73400664062499/7?key={api_key}&mapSize=3000,1500&declutter=1&dpi=Large&format=gif',
+        GOOGLE_GET_MAP_IMAGE: '',
+        BING_MARKERS: '&pushpin={latitude},{longitude};1;{name}',
+        GOOGLE_MARKERS: ''
     }
 };

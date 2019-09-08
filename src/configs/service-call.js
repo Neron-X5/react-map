@@ -4,7 +4,7 @@ const service = (fetchData = {}) => {
     return new Promise(async (resolve, reject) => {
         try {
             const { url = '', method = 'GET', headers = new Headers(), body = {} } = fetchData;
-            const request = new Request(`${APP_CONSTANTS.API.BASE_URL}/${url}`, {
+            const request = new Request(`${APP_CONSTANTS.API[`${APP_CONSTANTS.PROVIDER}_BASE_URL`]}${url}`, {
                 method,
                 headers,
                 body: method === 'GET' ? null : body
@@ -12,6 +12,8 @@ const service = (fetchData = {}) => {
             const response = await fetch(request);
             if (response.ok) {
                 const data = await response.json();
+                /* const blob = await response.blob();
+                const data = await URL.createObjectURL(blob); */
                 resolve(data);
             } else {
                 reject(response.statusText);

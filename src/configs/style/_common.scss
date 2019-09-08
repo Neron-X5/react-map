@@ -51,6 +51,7 @@ button {
     &:hover,
     &:focus {
         background: lighten($primaryThemeColor, 25%);
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
     }
 
     &:focus {
@@ -60,6 +61,22 @@ button {
 
     &:active {
         transform: scale(0.99);
+    }
+
+    &.outline {
+        margin: 5px 5px 5px 0;
+        padding: 0.8rem 1.5rem;
+        background-color: transparent;
+        color: $primaryThemeColor;
+        border: 1px solid $primaryThemeColor;
+
+        &:hover,
+        &:focus {
+            background-color: transparent;
+            color: darken($primaryThemeColor, 25%);
+            border: 1px solid darken($primaryThemeColor, 25%);
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+        }
     }
 }
 
